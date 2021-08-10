@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dce4eb">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lists_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Lists"
+            android:textColor="#404e58"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/empty_cart_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic__empty_cart"
+            app:layout_constraintTop_toBottomOf="@id/lists_title"
+            android:layout_marginTop="100dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/create_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/empty_cart_image"
+            android:text="Create your first list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_marginTop="30dp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tap_to_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/create_list"
+            android:layout_marginTop="10dp"
+            android:text="Tap on Create List to create your first list"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_list_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tap_to_create"
+            android:layout_marginTop="25dp"
+            app:icon="@drawable/ic_add_circle_24"
+            android:text="Create List"
+            android:textAllCaps="false"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            style="@style/Widget.MaterialComponents.Button.Icon"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <inset
+            android:insetLeft="@dimen/margin_short"
+            android:insetRight="@dimen/margin_short"
+            android:insetTop="@dimen/margin_short"
+            android:insetBottom="0dp">
+            <shape>
+                <solid android:color="#DDDDE0" />
+                <corners android:topLeftRadius="@dimen/blue_dialog_radius"
+                    android:topRightRadius="@dimen/blue_dialog_radius" />
+            </shape>
+        </inset>
+    </item>
+    <item android:top="@dimen/margin_shorter">
+        <shape>
+            <solid android:color="#dce4eb" />
+            <corners android:topLeftRadius="@dimen/blue_dialog_radius"
+                android:topRightRadius="@dimen/blue_dialog_radius" />
+        </shape>
+    </item>
+</layer-list>

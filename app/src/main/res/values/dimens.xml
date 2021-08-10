@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_short">6dp</dimen>
+    <dimen name="blue_dialog_radius">18dp</dimen>
+    <dimen name="margin_shorter">3dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+</resources>

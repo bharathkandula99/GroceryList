@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/fragment_list">
+
+    <fragment
+        android:id="@+id/fragment_list"
+        android:name="com.tilicho.grocery.mangement.fragments.ListsFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_lists" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_inventory"
+        android:name="com.tilicho.grocery.mangement.fragments.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_summery"
+        android:name="com.tilicho.grocery.mangement.fragments.SummeryFragment"
+        android:label="fragment_summery"
+        tools:layout="@layout/fragment_summery" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="com.tilicho.grocery.mangement.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+
+        <action
+            android:id="@+id/action_settingsFragment_to_AccountSettingsFragment"
+            app:destination="@id/fragment_account_settings" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_update_password"
+        android:name="com.tilicho.grocery.mangement.fragments.UpdatePassword"
+        android:label="fragment_update_password"
+        tools:layout="@layout/fragment_update_password" >
+        <action
+            android:id="@+id/action_update_password_to_settings"
+            app:destination="@id/fragment_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_account_settings"
+        android:name="com.tilicho.grocery.mangement.fragments.AccountSettingsFragment"
+        android:label="fragment_account_settings"
+        tools:layout="@layout/fragment_account_settings" >
+
+        <action
+            android:id="@+id/action_account_settings_to_settings"
+            app:destination="@id/fragment_settings" />
+
+        <action
+            android:id="@+id/action_account_settings_to_update_passwoard"
+            app:destination="@id/fragment_update_password" />
+    </fragment>
+
+</navigation>
