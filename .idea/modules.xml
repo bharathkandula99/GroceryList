@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grocerylist.iml" filepath="$PROJECT_DIR$/.idea/modules/grocerylist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Groczy.iml" filepath="$PROJECT_DIR$/.idea/modules/Groczy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Groczy.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Groczy.app.iml" />
     </modules>
   </component>
 </project>

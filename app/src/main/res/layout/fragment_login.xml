@@ -8,7 +8,10 @@
         <import type="android.view.View" />
 
         <variable
-            name="showLoginUI"
+            name="enableLoginButton"
+            type="Boolean" />
+        <variable
+            name="enableSignupButton"
             type="Boolean" />
         <variable
             name="viewModel"
@@ -79,8 +82,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/FirstNameTextField"
+            android:id="@+id/first_name_text_field"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,11 +96,10 @@
             app:errorTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gretting_text"
-
-            >
+            app:layout_constraintTop_toBottomOf="@id/gretting_text">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -108,8 +109,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/LastNameTextField"
+            android:id="@+id/last_name_text_field"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,9 +123,10 @@
             app:errorTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/FirstNameTextField">
+            app:layout_constraintTop_toBottomOf="@id/first_name_text_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -136,8 +137,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/emailTextField"
+            android:id="@+id/email_text_field"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,9 +150,10 @@
             app:errorTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LastNameTextField">
+            app:layout_constraintTop_toBottomOf="@id/last_name_text_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textWebEmailAddress"
@@ -162,8 +163,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/passWordTextField"
+            android:id="@+id/password_text_field"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -176,9 +176,10 @@
             app:errorTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailTextField">
+            app:layout_constraintTop_toBottomOf="@id/email_text_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -188,6 +189,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/forgot_password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -197,7 +199,7 @@
             android:textColor="#608484"
             android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.VISIBLE : View.GONE, default=gone}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passWordTextField"
+            app:layout_constraintTop_toBottomOf="@id/password_text_field"
             tools:visibility="visible" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -228,6 +230,7 @@
                 android:background="@drawable/create_button_background"
                 android:text="Create Account"
                 android:textAllCaps="false"
+                android:enabled="@{enableSignupButton ? true : false, default=false}"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.GONE : View.VISIBLE, default=gone}" />
 
             <com.google.android.material.button.MaterialButton
@@ -240,6 +243,7 @@
                 android:background="@drawable/create_button_background"
                 android:text="Login"
                 android:textAllCaps="false"
+                android:enabled="@{enableLoginButton ? true : false, default=false}"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.VISIBLE : View.GONE, default=gone}" />
         </RelativeLayout>
 

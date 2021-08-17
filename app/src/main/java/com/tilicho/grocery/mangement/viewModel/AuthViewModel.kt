@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _loginUIShown: MutableLiveData<Boolean> = MutableLiveData(true)
+
     val loginUIShown: LiveData<Boolean>
         get() = _loginUIShown
 

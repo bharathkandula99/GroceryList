@@ -1,5 +1,6 @@
 package com.tilicho.grocery.mangement.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.tilicho.grocery.mangement.R
+import com.tilicho.grocery.mangement.activities.HomeActivity
+import com.tilicho.grocery.mangement.activities.SplashActivity
 import com.tilicho.grocery.mangement.databinding.FragmentLoginBinding
 import com.tilicho.grocery.mangement.databinding.FragmentSettingsBinding
 import com.tilicho.grocery.mangement.dialog.AboutUsDialog
@@ -21,6 +25,12 @@ class SettingsFragment : Fragment() {
     private val appViewModelStore by lazy { AppViewModelStore.getInstance(requireActivity().application) }
     private val settingsViewModel by lazy { appViewModelStore.getAndroidViewModel<SettingsViewModel>() }
 
+    private var mAuth: FirebaseAuth? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance();
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,20 +47,31 @@ class SettingsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         binding.settingsViewModel = settingsViewModel
 
-        initLitiners()
+        initListeners()
     }
 
-    private fun initLitiners() {
-
+    private fun initListeners() {
         binding.accountLayout.setOnClickListener {
             binding.root.findNavController()
                 .navigate(R.id.action_settingsFragment_to_AccountSettingsFragment)
         }
 
-        binding.teamLayout.setOnClickListener {showAboutUs()  }
+        binding.teamLayout.setOnClickListener {
+            showAboutUs()
+        }
+
+        binding.logoutButton.setOnClickListener {
+            logout()
+        }
     }
+
     private fun showAboutUs() {
         val dialog = AboutUsDialog()
         dialog.show(requireActivity().supportFragmentManager, "about_us_dialog")
+    }
+
+    private fun logout(){
+        mAuth!!.signOut()
+        startActivity(Intent(requireActivity(), SplashActivity::class.java))
     }
 }
