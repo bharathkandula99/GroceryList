@@ -11,6 +11,10 @@
         android:label="fragment_list"
         tools:layout="@layout/fragment_lists" >
 
+        <action
+            android:id="@+id/action_mylists_to_grocerylists"
+            app:destination="@id/fragment_grocery_list" />
+
     </fragment>
 
     <fragment
@@ -18,8 +22,12 @@
         android:name="com.tilicho.grocery.mangement.fragments.InventoryFragment"
         android:label="fragment_inventory"
         tools:layout="@layout/fragment_inventory" >
+        <action
+            android:id="@+id/action_inventory_to_inventory_details"
+            app:destination="@id/fragment_inventory_item_details" />
 
     </fragment>
+
     <fragment
         android:id="@+id/fragment_summery"
         android:name="com.tilicho.grocery.mangement.fragments.SummeryFragment"
@@ -27,6 +35,7 @@
         tools:layout="@layout/fragment_summery" >
 
     </fragment>
+
     <fragment
         android:id="@+id/fragment_settings"
         android:name="com.tilicho.grocery.mangement.fragments.SettingsFragment"
@@ -39,6 +48,7 @@
 
 
     </fragment>
+
     <fragment
         android:id="@+id/fragment_update_password"
         android:name="com.tilicho.grocery.mangement.fragments.UpdatePassword"
@@ -48,6 +58,7 @@
             android:id="@+id/action_update_password_to_settings"
             app:destination="@id/fragment_settings" />
     </fragment>
+
     <fragment
         android:id="@+id/fragment_account_settings"
         android:name="com.tilicho.grocery.mangement.fragments.AccountSettingsFragment"
@@ -61,6 +72,23 @@
         <action
             android:id="@+id/action_account_settings_to_update_passwoard"
             app:destination="@id/fragment_update_password" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_grocery_list"
+        android:name="com.tilicho.grocery.mangement.fragments.GroceryListFragment"
+        android:label="fragment_grocery_list"
+        tools:layout="@layout/fragment_grocery_list" >
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_inventory_item_details"
+        android:name="com.tilicho.grocery.mangement.fragments.InventoryItemDetails"
+        android:label="fragment_inventory_item_details"
+        tools:layout="@layout/fragment_inventory_item_details" >
+
     </fragment>
 
 </navigation>

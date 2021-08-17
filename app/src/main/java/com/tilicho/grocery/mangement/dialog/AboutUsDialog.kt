@@ -43,8 +43,8 @@ class AboutUsDialog : DialogFragment() {
 
         dialog!!.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog!!.window!!.setGravity(Gravity.BOTTOM)
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.popup_rounded_top_blue)
-        dialog!!.window!!.attributes.windowAnimations = R.style.BlueDialogAnimations
+        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.popup_rounded_top_light_green)
+        dialog!!.window!!.attributes.windowAnimations = R.style.ListDialogAnimations
         dialog!!.window!!.decorView.systemUiVisibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         }

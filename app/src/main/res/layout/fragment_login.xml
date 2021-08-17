@@ -8,9 +8,6 @@
         <import type="android.view.View" />
 
         <variable
-            name="showLoginUI"
-            type="Boolean" />
-        <variable
             name="viewModel"
             type="com.tilicho.grocery.mangement.viewModel.AuthViewModel" />
 
@@ -136,7 +133,6 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/emailTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
