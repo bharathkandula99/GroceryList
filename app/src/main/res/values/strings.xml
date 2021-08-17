@@ -7,4 +7,16 @@
     <string name="about_us_text">Tilicho Labs is a boutique technology consultancy that specializes in mobile technologies.\n\nWe are based out of Vizag, a beautiful coastal city in India and love building apps.\n\nWe build beautiful applications that power businesses and delight users.</string>
     <string name="visit_our_website">Visit our website</string>
     <string name="create_list">Create a new list</string>
+    <string name="create_a_cateogry">Create a cateogry</string>
+
+    <string-array name="programming_languages">
+        <item>kg</item>
+        <item>L</item>
+        <item>Packet</item>
+        <item>Bottle</item>
+        <item>Can</item>
+        <item>ml</item>
+        <item>gms</item>
+        <item>lb</item>
+    </string-array>
 </resources>

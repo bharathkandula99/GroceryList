@@ -37,7 +37,7 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
-    <style name="BlueDialogAnimations">
+    <style name="ListDialogAnimations">
         <item name="android:windowEnterAnimation">@anim/slide_in_b2t</item>
         <item name="android:windowExitAnimation">@anim/slide_out_t2b</item>
     </style>
@@ -67,5 +67,22 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="CategorySearchTextInputLayout">
+        <item name="android:elevation" tools:targetApi="lollipop">10dp</item>
+        <item name="android:background">@drawable/textinputlayout_background</item>
+        <item name="android:theme">@style/TextInputLayoutTheme</item>
+    </style>
+
+    <style name="TextInputLayoutTheme" parent="Theme.Groczy">
+        <item name="colorControlActivated">@color/groczyText</item>
+    </style>
+
+    <style name="CategorySearchTextInput">
+        <item name="android:background">@drawable/textinputlayout_background</item>
+        <item name="android:drawablePadding">@dimen/margin_short</item>
+        <item name="android:ems">10</item>
+    </style>
+
 
 </resources>

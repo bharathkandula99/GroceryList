@@ -7,6 +7,10 @@
 
         <import type="android.view.View" />
 
+        <variable
+            name="listViewModel"
+            type="com.tilicho.grocery.mangement.viewModel.ListsViewModel" />
+
 
     </data>
 
@@ -16,72 +20,116 @@
         android:fillViewport="true">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#dce4eb">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/lists_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:text="Lists"
-            android:textColor="#404e58"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/empty_cart_image"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic__empty_cart"
-            app:layout_constraintTop_toBottomOf="@id/lists_title"
-            android:layout_marginTop="100dp"/>
+            android:layout_height="match_parent"
+            android:background="#dce4eb">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/create_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/empty_cart_image"
-            android:text="Create your first list"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_marginTop="30dp"
-            />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lists_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="Lists"
+                android:textColor="#404e58"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tap_to_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/create_list"
-            android:layout_marginTop="10dp"
-            android:text="Tap on Create List to create your first list"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/empty_cart_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic__empty_cart"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lists_title"
+                tools:visibility="visible" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_list_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tap_to_create"
-            android:layout_marginTop="25dp"
-            app:icon="@drawable/ic_add_circle_24"
-            android:text="Create List"
-            android:textAllCaps="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/Widget.MaterialComponents.Button.Icon"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/create_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Create your first list"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/empty_cart_image"
+                tools:visibility="visible" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tap_to_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Tap on Create List to create your first list"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_list"
+                tools:visibility="gone" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_list_button"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Create List"
+                android:textAllCaps="false"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+                app:icon="@drawable/ic_add_circle_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tap_to_create"
+                tools:visibility="gone" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="6dp"
+                android:background="@android:color/transparent"
+                android:overScrollMode="never"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lists_title"
+                app:tabSelectedTextColor="@color/groczyText"
+                app:tabTextColor="@android:color/darker_gray"
+                tools:visibility="visible" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tabLayout"
+                android:overScrollMode="never"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabLayout"
+                tools:visibility="visible" />
+
+            <!--<include
+                android:id="@+id/non_empty_layout"
+                layout="@layout/non_empty_list_view"
+                app:layout_constraintTop_toBottomOf="@id/lists_title"
+                tools:visibility="visible"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowEmptyUI) ? View.GONE : View.VISIBLE, default=gone}" />
+    -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
