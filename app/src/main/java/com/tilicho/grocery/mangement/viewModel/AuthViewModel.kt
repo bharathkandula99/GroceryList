@@ -17,8 +17,9 @@ import java.util.*
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private var mAuth: FirebaseAuth? = null
     private var authManager: FirebaseAuthManager? = null
-    var mDatabase: DatabaseReference? = null
-
+    var mGlobalDatabase: DatabaseReference? = null
+    var mUserDatabase: DatabaseReference? = null
+    var mDefaultsDatabase: DatabaseReference? = null
 
     private val _loginUIShown: MutableLiveData<Boolean> = MutableLiveData(true)
 
@@ -52,7 +53,9 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-        mDatabase = FirebaseDatabase.getInstance().getReference("users")
+        mGlobalDatabase = FirebaseDatabase.getInstance().getReference()
+        mUserDatabase = FirebaseDatabase.getInstance().getReference("users")
+        mDefaultsDatabase = FirebaseDatabase.getInstance().getReference("defaults")
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         //  firebaseAuthManager.value = FirebaseAuthManager.getInstance()
         if (authManager == null) {
@@ -155,19 +158,31 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun createUser(user: UserModel) {
-
-        mDatabase?.child(user.id)?.setValue(user)
+        mUserDatabase?.child(user.id)?.setValue(user)
             ?.addOnCompleteListener {
                 storeUserDatatoAppPreff(user)
+                initDefaultUserData(user.id)
                 _isSignUpSucess.value = true
             }?.addOnFailureListener {
                 _isSignUpFailed.value = true
             }
     }
 
+    private fun initDefaultUserData(id: String) {
+        mDefaultsDatabase?.child("categories")?.get()
+            ?.addOnCompleteListener {
+                mGlobalDatabase?.child("categories")?.child(id)?.setValue(it.result?.getValue())
+            }
+
+        mDefaultsDatabase?.child("items")?.get()
+            ?.addOnCompleteListener {
+                mGlobalDatabase?.child("items")?.child(id)?.setValue(it.result?.getValue())
+            }
+    }
+
     private fun readUserDetails(userID: String) {
 
-        mDatabase?.child(userID)?.get()
+        mUserDatabase?.child(userID)?.get()
             ?.addOnCompleteListener {
 
                 val user: UserModel? = it.result?.getValue(UserModel::class.java)
