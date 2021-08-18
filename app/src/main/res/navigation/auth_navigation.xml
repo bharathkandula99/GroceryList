@@ -11,6 +11,22 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
 
+        <action
+            android:id="@+id/login_to_reset_password"
+            app:destination="@id/fragment_reset_password" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_reset_password"
+        android:name="com.tilicho.grocery.mangement.fragments.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/reset_password_to_login"
+            app:destination="@id/fragment_login" />
+
     </fragment>
 
 </navigation>

@@ -92,21 +92,17 @@ class FirebaseAuthManager {
 
 class FirebaseResult<T> {
 
-    var isSuccessful: Boolean
-        get() {
-            TODO()
+    var isSuccessful: Boolean = false
+        get() = field
+        set(value) {
+            field = value
         }
-        set(value) {}
 
-    var errorMessage: String
-        get() {
-            TODO()
-        }
-        set(value) {}
+    var errorMessage: String = ""
+        get() = field
+        set(value) {field = value}
 
-    var result: T
-        get() {
-            TODO()
-        }
-        set(value) {}
+    var result: T? = null
+        get()  = field
+        set(value) {field = value}
 }

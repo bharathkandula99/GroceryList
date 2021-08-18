@@ -1,6 +1,5 @@
 package com.tilicho.grocery.mangement.fragments
 
-import android.R.attr.password
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.activities.HomeActivity
@@ -32,16 +30,13 @@ class LoginFragment : Fragment() {
     private var emailOk = false
     private var passwordOk = false
 
-    private var mAuth: FirebaseAuth? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAuth = FirebaseAuth.getInstance();
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
@@ -53,9 +48,54 @@ class LoginFragment : Fragment() {
         //dialog = ProgressDialog(context)
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = authViewModel
-        authViewModel.setUIState(false)
+        authViewModel.setUIState(true)
 
         initListeners()
+        addObservers()
+    }
+
+    private fun addObservers() {
+        authViewModel._isLoginSucess.observe(this.viewLifecycleOwner, {
+            if (it) {
+                hideProgressBar()
+                Toast.makeText(context, "Login sucess.", Toast.LENGTH_SHORT)
+                    .show()
+                startActivity(Intent(requireActivity(), HomeActivity::class.java))
+            }
+        })
+
+        authViewModel._isLoginFailed.observe(this.viewLifecycleOwner, {
+            if (it) {
+                hideProgressBar()
+                Toast.makeText(
+                    context,
+                    "Login failed." + authViewModel.loginAuthResult.value?.errorMessage,
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+        })
+
+        authViewModel._isSignUpSucess.observe(this.viewLifecycleOwner, {
+            if (it) {
+                hideProgressBar()
+                Toast.makeText(context, "Sign up sucess.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+        authViewModel._isSignUpFailed.observe(this.viewLifecycleOwner, {
+            if (it) {
+                hideProgressBar()
+                Toast.makeText(
+                    context,
+                    "Signup failed." + authViewModel.signUpAuthResult.value?.errorMessage,
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+
+        })
     }
 
     private fun toggleActionButtons() {
@@ -71,6 +111,7 @@ class LoginFragment : Fragment() {
         binding.firstNameEditText.addTextChangedListener {
             if (it != null) {
                 firstNameOk = it.length > 2
+                authViewModel.firstName.value = it.toString()
                 toggleActionButtons()
             }
         }
@@ -78,6 +119,7 @@ class LoginFragment : Fragment() {
         binding.lastNameEditText.addTextChangedListener {
             if (it != null) {
                 lastNameOk = it.length > 2
+                authViewModel.lastName.value = it.toString()
                 toggleActionButtons()
             }
         }
@@ -105,58 +147,33 @@ class LoginFragment : Fragment() {
         }
 
         binding.createAccountButton.setOnClickListener {
-            triggerSignUp(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
+            showProgressBar()
+            authViewModel.performSignUp(
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
         }
 
         binding.loginButton.setOnClickListener {
-            triggerSignIn(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
+            showProgressBar()
+            authViewModel.performLogin(
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
         }
 
         binding.forgotPasswordTextView.setOnClickListener {
-            triggerForgotPassword("dheeraj@tilicho.in")
+            Toast.makeText(context, "Work in progress", Toast.LENGTH_SHORT).show()
+            binding.root.findNavController()
+                .navigate(R.id.login_to_reset_password)
+            //  triggerForgotPassword("dheeraj@tilicho.in")
         }
     }
-
-    private fun triggerSignUp(email: String, password: String) {
-        val authResultLiveData = FirebaseAuthManager.getInstance().performSignUp(email, password)
-
-        authResultLiveData.observe(this.viewLifecycleOwner, {
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Signup success.", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
-
-                // Using this User ID start with RealTime DB integration
-                // it.result.user.uid
-                //TODO Register first name and last name
-            } else {
-                Toast.makeText(context, "Signup failed.", Toast.LENGTH_SHORT).show()
-            }
-        })
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 
-    private fun triggerSignIn(email: String, password: String) {
-        val authResultLiveData = FirebaseAuthManager.getInstance().performSignIn(email, password)
-
-        authResultLiveData.observe(this.viewLifecycleOwner, {
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Login success.", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
-            } else {
-                Toast.makeText(context, "Login failed.", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun triggerForgotPassword(email: String) {
-        val authResultLiveData = FirebaseAuthManager.getInstance().performForgotPassword(email)
-
-        authResultLiveData.observe(this.viewLifecycleOwner, {
-            if(it.isSuccessful){
-                Toast.makeText(context, "Reset password link sent success.", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
-            } else {
-                Toast.makeText(context, "Reset password link sent failed.", Toast.LENGTH_SHORT).show()
-            }
-        })
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 }

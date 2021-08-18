@@ -14,13 +14,13 @@ import com.tilicho.grocery.mangement.adapter.FrequentlyUsedItemsAdapter
 import com.tilicho.grocery.mangement.adapter.InStockAdapter
 import com.tilicho.grocery.mangement.databinding.FragmentInventoryBinding
 import com.tilicho.grocery.mangement.viewModel.AppViewModelStore
-import com.tilicho.grocery.mangement.viewModel.InventoryViewModel
+import com.tilicho.grocery.mangement.viewModel.FoodSummeryViewModel
 
 class InventoryFragment : Fragment() {
 
     private lateinit var binding: FragmentInventoryBinding
     private val appViewModelStore by lazy { AppViewModelStore.getInstance(requireActivity().application) }
-    private val inventoryViewModel by lazy { appViewModelStore.getAndroidViewModel<InventoryViewModel>() }
+    private val foodSummeryViewModel by lazy { appViewModelStore.getAndroidViewModel<FoodSummeryViewModel>() }
 
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ class InventoryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         //dialog = ProgressDialog(context)
         super.onActivityCreated(savedInstanceState)
-        binding.inventoryViewModel = inventoryViewModel
+        binding.foodSummeryViewModel = foodSummeryViewModel
         populateFrequentlyUsedRecyclerView()
         populateInStockRecyclerView()
         initLitiners()
@@ -82,11 +82,9 @@ class InventoryFragment : Fragment() {
 
     private fun initLitiners() {
 
-        binding.inventoryTitle.setOnClickListener { inventoryViewModel.setUIState(!inventoryViewModel.shouldShowEmptyUI.value!!) }
+        binding.inventoryTitle.setOnClickListener { foodSummeryViewModel.setUIState(!foodSummeryViewModel.shouldShowFoodSumeryEmptyUI.value!!) }
 
     }
-
-
 
 
 }

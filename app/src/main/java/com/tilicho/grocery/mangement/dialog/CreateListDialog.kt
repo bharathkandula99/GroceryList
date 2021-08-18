@@ -12,8 +12,11 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.databinding.CreateListDialogBinding
+import com.tilicho.grocery.mangement.viewModel.ListsViewModel
 
 class CreateListDialog : DialogFragment() {
 
@@ -21,11 +24,22 @@ class CreateListDialog : DialogFragment() {
 
     private var rootBottomPadding = 0
     private val KEYBOARD_VISIBLE_THRESHOLD_DP = 100
+    private lateinit var viewModel: ListsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.create_list_dialog, null, false)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.create_list_dialog,
+            null,
+            false
+        )
 
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -40,22 +54,42 @@ class CreateListDialog : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        dialog!!.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog!!.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
         dialog!!.window!!.setGravity(Gravity.BOTTOM)
         dialog!!.window!!.setBackgroundDrawableResource(R.drawable.popup_rounded_top_light_green)
         dialog!!.window!!.attributes.windowAnimations = R.style.ListDialogAnimations
         dialog!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
+        dialog!!.window!!.decorView.systemUiVisibility =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            } else {
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            }
 
-        dialog!!.window!!.decorView.systemUiVisibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        try {
+            val viewModelFactory =
+                ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            viewModel = requireActivity().run {
+                ViewModelProviders.of(this, viewModelFactory).get(ListsViewModel::class.java)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            dismiss()
         }
-        else {
-            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+
+        initListiners()
+
+
+    }
+
+    private fun initListiners() {
+        binding.createListButton.setOnClickListener {
+            //TODO API CALL
         }
-
-
-
     }
 
     private fun configureInset() {
@@ -69,8 +103,8 @@ class CreateListDialog : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         if (imm.isAcceptingText) {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
@@ -93,5 +127,16 @@ class CreateListDialog : DialogFragment() {
     }
 
     override fun getTheme(): Int = R.style.AppTheme_NoWiredStrapInNavigationBar
+
+    fun hideProgressBar(){
+        binding.progressBar.visibility = View.GONE
+        dialog!!.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+    fun showprogressBar(){
+        binding.progressBar.visibility = View.VISIBLE
+        dialog!!.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+    }
 
 }

@@ -99,7 +99,8 @@
                 android:paddingBottom="2dp"
                 android:text="Recurring"
                 android:textColor="@color/teal_200"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/discription_text_field"
@@ -145,7 +146,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:text="Your Grocery List is empty!"
-
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:visibility="@{ safeUnbox(listViewModel.shouldShowGroceryListEmptyUI) ? View.VISIBLE : View.GONE, default=visible}" />
 

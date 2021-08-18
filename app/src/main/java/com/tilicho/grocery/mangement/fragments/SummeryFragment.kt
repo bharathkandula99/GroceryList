@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.databinding.FragmentInventoryBinding
+import com.tilicho.grocery.mangement.databinding.FragmentSummeryBinding
 import com.tilicho.grocery.mangement.viewModel.AppViewModelStore
 import com.tilicho.grocery.mangement.viewModel.FoodSummeryViewModel
 import com.tilicho.grocery.mangement.viewModel.InventoryViewModel
 
 class SummeryFragment : Fragment() {
 
-    private lateinit var binding: FragmentInventoryBinding
+    private lateinit var binding: FragmentSummeryBinding
     private val appViewModelStore by lazy { AppViewModelStore.getInstance(requireActivity().application) }
     private val foodSummeryViewModel by lazy { appViewModelStore.getAndroidViewModel<FoodSummeryViewModel>() }
 
@@ -32,7 +33,7 @@ class SummeryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         //dialog = ProgressDialog(context)
         super.onActivityCreated(savedInstanceState)
-        binding.inventoryViewModel = inventoryViewModel
+        binding.foodSummeryViewModel = foodSummeryViewModel
 
         initLitiners()
     }

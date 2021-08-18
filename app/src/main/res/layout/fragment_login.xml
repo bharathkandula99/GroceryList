@@ -10,9 +10,11 @@
         <variable
             name="enableLoginButton"
             type="Boolean" />
+
         <variable
             name="enableSignupButton"
             type="Boolean" />
+
         <variable
 
             name="viewModel"
@@ -22,6 +24,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -177,6 +180,7 @@
             app:errorTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:passwordToggleEnabled="true"
             app:layout_constraintTop_toBottomOf="@id/email_text_field">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -229,9 +233,9 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/create_button_background"
+                android:enabled="@{enableSignupButton ? true : false, default=false}"
                 android:text="Create Account"
                 android:textAllCaps="false"
-                android:enabled="@{enableSignupButton ? true : false, default=false}"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.GONE : View.VISIBLE, default=gone}" />
 
             <com.google.android.material.button.MaterialButton
@@ -242,9 +246,9 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/create_button_background"
+                android:enabled="@{enableLoginButton ? true : false, default=false}"
                 android:text="Login"
                 android:textAllCaps="false"
-                android:enabled="@{enableLoginButton ? true : false, default=false}"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.VISIBLE : View.GONE, default=gone}" />
         </RelativeLayout>
 
@@ -275,6 +279,21 @@
                 android:text="Don't have an account? "
                 android:textColor="#608484"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.VISIBLE : View.GONE, default=gone}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/margin_short"
+            android:visibility="gone">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:keepScreenOn="true" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

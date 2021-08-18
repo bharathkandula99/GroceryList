@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tilicho.grocery.mangement.sharedPreferences.AppPreff
 
 
 class SettingsViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,10 +21,10 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     val appearenceType: LiveData<String>
         get() = _appearenceType
 
-    private val _email: MutableLiveData<String> = MutableLiveData("google@gmail.com")
+    private val _email: MutableLiveData<String> = MutableLiveData(AppPreff(application).getUserEmail())
     val email: LiveData<String>
         get() = _email
-    private val _name: MutableLiveData<String> = MutableLiveData("Groczy App")
+    private val _name: MutableLiveData<String> = MutableLiveData(AppPreff(application).getFirstName() + AppPreff(application).getLastName())
     val name: LiveData<String>
         get() = _name
 }
