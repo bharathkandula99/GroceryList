@@ -45,7 +45,7 @@ class ResetPasswordFragment : Fragment() {
         authViewModel._isRestPasswordnSucess.observe(this.viewLifecycleOwner, {
             if (it) {
                 hideProgressBar()
-                Toast.makeText(context, "Send sucess.", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Send success.", Toast.LENGTH_SHORT)
                     .show()
                 binding.root.findNavController().navigateUp()
                 authViewModel._isRestPasswordnSucess.value = false

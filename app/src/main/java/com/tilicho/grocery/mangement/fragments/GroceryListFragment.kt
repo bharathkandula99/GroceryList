@@ -101,8 +101,8 @@ class GroceryListFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(requireContext(), "exception listItems observer", Toast.LENGTH_LONG)
-                    .show()
+               /* Toast.makeText(requireContext(), "exception listItems observer", Toast.LENGTH_LONG)
+                    .show()*/
                 listsViewModel.setGroceryListUIState(true)
             }
         }
@@ -113,7 +113,7 @@ class GroceryListFragment : Fragment() {
             binding.root.findNavController().navigateUp()
         }
         binding.markAsPurchase.setOnClickListener {
-            Toast.makeText(requireContext(), "toast", Toast.LENGTH_SHORT).show()
+          //  Toast.makeText(requireContext(), "toast", Toast.LENGTH_SHORT).show()
             //performItemPurchase()
 
             showAddPriceDialog()
@@ -153,11 +153,11 @@ class GroceryListFragment : Fragment() {
         val dialog = AddPriceDialog().apply {
             yesButtonClicked = {
                 navigateToAddPriceFragment()
-                Toast.makeText(requireContext(), "yes", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(requireContext(), "yes", Toast.LENGTH_SHORT).show()
             }
             noButtonClicked = {
 
-                Toast.makeText(requireContext(), "no", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(requireContext(), "no", Toast.LENGTH_SHORT).show()
                 performItemPurchasesNoPrice()
             }
         }
@@ -296,8 +296,8 @@ class GroceryListFragment : Fragment() {
                     it
                 )
                 binding.shouldVisibleMarkAsPurchaseButton = selectedItemPositions != null && selectedItemPositions.isNotEmpty()
-                Toast.makeText(requireContext(), "$it position selected", Toast.LENGTH_SHORT)
-                    .show()
+              /*  Toast.makeText(requireContext(), "$it position selected", Toast.LENGTH_SHORT)
+                    .show()*/
             }
 
             onItemClicked = {

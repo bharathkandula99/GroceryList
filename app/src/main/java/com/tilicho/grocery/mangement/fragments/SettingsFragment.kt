@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -77,8 +78,20 @@ class SettingsFragment : Fragment() {
         }
 
         binding.logoutButton.setOnClickListener {
-            logout()
+            showLogoutDialog()
         }
+    }
+
+    private fun showLogoutDialog() {
+        AlertDialog.Builder(requireContext()).setCancelable(false).apply {
+            setMessage("Are you sure you want to logout now?")
+            setPositiveButton("Yes") { d, _ ->
+                logout()
+            }
+            setNegativeButton("No") { d, _ ->
+                d.dismiss()
+            }
+        }.show()
     }
 
     private fun showAboutUs() {

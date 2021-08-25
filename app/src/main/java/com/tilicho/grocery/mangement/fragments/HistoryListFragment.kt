@@ -54,7 +54,7 @@ class HistoryListFragment : Fragment() {
             listsViewModel
         ).apply {
             onCardClicked = {
-               Toast.makeText(requireContext(),"history item clicked",Toast.LENGTH_SHORT).show()
+              // Toast.makeText(requireContext(),"history item clicked",Toast.LENGTH_SHORT).show()
             }
         }
         binding.myListsRecyclerView.layoutManager =

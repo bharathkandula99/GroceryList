@@ -72,6 +72,8 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 )
                     .show()
+                authViewModel._isLoginFailed.value = false
+
             }
         })
 
@@ -94,6 +96,8 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 )
                     .show()
+                authViewModel._isSignUpFailed.value = false
+
             }
 
         })

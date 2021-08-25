@@ -52,8 +52,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_more_vertical"
-                android:visibility="@{ safeUnbox(listViewModel.shouldShowGroceryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
-                tools:visibility="visible" />
+                android:visibility="gone" />
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -61,9 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="15dp"
-                android:layout_toStartOf="@id/menu"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"

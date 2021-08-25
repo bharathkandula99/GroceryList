@@ -114,7 +114,7 @@ class InventoryFragment : Fragment() {
             requireContext()
         ).apply {
             onCardClicked = {
-                Toast.makeText(requireContext(), "$it position selected", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(requireContext(), "$it position selected", Toast.LENGTH_SHORT).show()
                 //gotoInventoryDetailsScreen(it)
 
             }

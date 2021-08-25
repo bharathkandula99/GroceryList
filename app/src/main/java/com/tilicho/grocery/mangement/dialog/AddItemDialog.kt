@@ -249,9 +249,9 @@ class AddItemDialog(
             if (selectedItem != null) {
                 this.selectedItem = selectedItem
                 fillFieldsBasedOnSelectedItem(selectedItem)
-                Toast.makeText(context, selectedItem.name ?: "", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(context, selectedItem.name ?: "", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "suggestion.name", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(context, "suggestion.name", Toast.LENGTH_SHORT).show()
             }
         }
     }

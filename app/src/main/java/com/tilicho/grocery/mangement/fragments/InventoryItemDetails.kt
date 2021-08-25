@@ -220,29 +220,35 @@ class InventoryItemDetails : Fragment() {
     }
 
     private fun saveDetails() {
-        if (validateFields()) {
+        try {
+            if (validateFields()) {
 
-            val purchasehistoryId =
-                listsViewModel.purchaseHistory.value?.get(selectedListItemModel?.listId)
-                    ?.get(item?.id)?.values?.filter { it.itemId == item?.id }?.get(0)?.id
-            val listId = selectedListItemModel?.listId
-            val itemId = item?.id
-            val userId = item?.userId
-            val itemConsumptionsId = itemConsumptions?.id
-            val avaiableQuantity =
-                itemConsumptions?.quantity?.minus(quantityConsumed) ?: itemConsumptions?.quantity
-                ?: 0.0
-            val updates: MutableMap<String, Any> = HashMap()
-            updates["items/$userId/$itemId/minimumQuantity"] = minimumQuantity ?: 0.0
-            updates["itemConsumptions/$userId/$itemId/$itemConsumptionsId/availableQuantity"] =
-                avaiableQuantity
-            updates["itemConsumptions/$userId/$itemId/$itemConsumptionsId/updatedAt"] =
-                System.currentTimeMillis()
-            updates["purchaseHistory/$userId/$listId/$itemId/$purchasehistoryId/availableQuantity"] =
-                avaiableQuantity
-            updates["purchaseHistory/$userId/$listId/$itemId/$purchasehistoryId/updatedAt"] =
-                System.currentTimeMillis()
-            listsViewModel.updateInventoryDetails(updates)
+                val purchasehistoryId =
+                    listsViewModel.purchaseHistory.value?.get(selectedListItemModel?.listId)
+                        ?.get(item?.id)?.values?.filter { it.itemId == item?.id }?.get(0)?.id
+                val listId = selectedListItemModel?.listId
+                val itemId = item?.id
+                val userId = item?.userId
+                val itemConsumptionsId = itemConsumptions?.id
+                val avaiableQuantity =
+                    itemConsumptions?.quantity?.minus(quantityConsumed)
+                        ?: itemConsumptions?.quantity
+                        ?: 0.0
+                val updates: MutableMap<String, Any> = HashMap()
+                updates["items/$userId/$itemId/minimumQuantity"] = minimumQuantity ?: 0.0
+                updates["itemConsumptions/$userId/$itemId/$itemConsumptionsId/availableQuantity"] =
+                    avaiableQuantity
+                updates["itemConsumptions/$userId/$itemId/$itemConsumptionsId/updatedAt"] =
+                    System.currentTimeMillis()
+                updates["purchaseHistory/$userId/$listId/$itemId/$purchasehistoryId/availableQuantity"] =
+                    avaiableQuantity
+                updates["purchaseHistory/$userId/$listId/$itemId/$purchasehistoryId/updatedAt"] =
+                    System.currentTimeMillis()
+                listsViewModel.updateInventoryDetails(updates)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            binding.root.findNavController().navigateUp()
         }
     }
 

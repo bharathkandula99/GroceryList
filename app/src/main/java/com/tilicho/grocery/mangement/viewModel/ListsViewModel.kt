@@ -94,6 +94,9 @@ class ListsViewModel(application: Application) : AndroidViewModel(application) {
         items.removeObservers(viewLifecycleOwner)
         categories.removeObservers(viewLifecycleOwner)
         units.removeObservers(viewLifecycleOwner)
+        purchaseHistory.removeObservers(viewLifecycleOwner)
+        consumptions.removeObservers(viewLifecycleOwner)
+        _selectedList.value = null
     }
 
     fun setUIState(shouldShowEmptyUI: Boolean) {
@@ -403,7 +406,7 @@ class ListsViewModel(application: Application) : AndroidViewModel(application) {
                             GenericTypeIndicator<HashMap<String, HashMap<String, ListItemModel>>>() {}
                         _listItems.value = snapshot.getValue(t)
                         //= snapshot.value as HashMap<String, ListsModel>
-                        Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
+                      //  Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -442,7 +445,7 @@ class ListsViewModel(application: Application) : AndroidViewModel(application) {
                         val t = object : GenericTypeIndicator<HashMap<String, ItemModel>>() {}
                         _items.value = snapshot.getValue(t)
                         //= snapshot.value as HashMap<String, ListsModel>
-                        Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -462,7 +465,7 @@ class ListsViewModel(application: Application) : AndroidViewModel(application) {
                         val t = object : GenericTypeIndicator<HashMap<String, CategoryModel>>() {}
                         _categories.value = snapshot.getValue(t)
                         //= snapshot.value as HashMap<String, ListsModel>
-                        Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -484,7 +487,7 @@ class ListsViewModel(application: Application) : AndroidViewModel(application) {
                             GenericTypeIndicator<HashMap<String, HashMap<String, ItemConsumptions>>>() {}
                         _consumptions.value = snapshot.getValue(t)
                         //= snapshot.value as HashMap<String, ListsModel>
-                        Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
+                      //  Toast.makeText(getApplication(), "snapshot", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onCancelled(error: DatabaseError) {

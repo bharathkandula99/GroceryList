@@ -167,11 +167,11 @@ class AddWastageDialog : DialogFragment() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(
+                /*Toast.makeText(
                     requireContext(),
                     (view as MaterialTextView).text,
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
                 mealType = (view as MaterialTextView).text as String
                 validateButton()
             }
