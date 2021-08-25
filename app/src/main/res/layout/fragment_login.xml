@@ -215,7 +215,8 @@
             android:textColor="#608484"
             app:layout_constraintBottom_toTopOf="@id/buttons_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
 
         <RelativeLayout
             android:id="@+id/buttons_layout"
@@ -267,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/homepagebaukastenbook"
-                android:text="Already have an account? "
+                android:text="Already have an account? Log in"
                 android:textColor="#608484"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.GONE : View.VISIBLE, default=gone}" />
 
@@ -276,7 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/homepagebaukastenbook"
-                android:text="Don't have an account? "
+                android:text="Don't have an account? Sign up"
                 android:textColor="#608484"
                 android:visibility="@{ safeUnbox(viewModel.loginUIShown) ? View.VISIBLE : View.GONE, default=gone}" />
         </RelativeLayout>

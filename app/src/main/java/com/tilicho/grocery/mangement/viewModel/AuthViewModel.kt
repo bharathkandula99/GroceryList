@@ -111,7 +111,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     createUser(
                         UserModel(
                             it.result?.user!!.uid, firstName.value ?: "", lastName.value ?: "",
-                            it.result!!.user?.email ?: "", Date().time, ""
+                            it.result!!.user?.email ?: "", System.currentTimeMillis(), ""
                         )
                     )
                 } else {

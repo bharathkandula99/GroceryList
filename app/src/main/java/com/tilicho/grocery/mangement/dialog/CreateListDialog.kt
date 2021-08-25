@@ -9,14 +9,19 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.updatePadding
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.databinding.CreateListDialogBinding
+import com.tilicho.grocery.mangement.sharedPreferences.AppPreff
+import com.tilicho.grocery.mangement.utils.ListsModel
 import com.tilicho.grocery.mangement.viewModel.ListsViewModel
+import java.util.*
 
 class CreateListDialog : DialogFragment() {
 
@@ -24,7 +29,9 @@ class CreateListDialog : DialogFragment() {
 
     private var rootBottomPadding = 0
     private val KEYBOARD_VISIBLE_THRESHOLD_DP = 100
-    private lateinit var viewModel: ListsViewModel
+    private lateinit var listViewModel: ListsViewModel
+    var listName:String = ""
+    var description:String = ""
 
 
     override fun onCreateView(
@@ -43,7 +50,7 @@ class CreateListDialog : DialogFragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.closeDialogButton.setOnClickListener { dismiss() }
+
 
         rootBottomPadding = binding.root.paddingBottom
         configureInset()
@@ -73,7 +80,7 @@ class CreateListDialog : DialogFragment() {
         try {
             val viewModelFactory =
                 ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            viewModel = requireActivity().run {
+            listViewModel = requireActivity().run {
                 ViewModelProviders.of(this, viewModelFactory).get(ListsViewModel::class.java)
             }
         } catch (e: Exception) {
@@ -81,15 +88,48 @@ class CreateListDialog : DialogFragment() {
             dismiss()
         }
 
-        initListiners()
-
-
+        initListeners()
     }
 
-    private fun initListiners() {
-        binding.createListButton.setOnClickListener {
-            //TODO API CALL
+    private fun initListeners() {
+        listViewModel.apply {
+            isCreateListSucess = { b: Boolean, s: String ->
+                hideProgressBar()
+                if (b){
+                    dismiss()
+                } else{
+                    Toast.makeText(requireContext(),s,Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+
+        binding.listNameEdittext.addTextChangedListener {
+            binding.enableButton = !(it == null || it.toString().isEmpty())
+            listName = it.toString() ?: ""
+        }
+        binding.discriptionTextFieldEditText.addTextChangedListener {
+            description = it.toString() ?: ""
+        }
+        binding.createListButton.setOnClickListener {
+            showprogressBar()
+            val listID = UUID.randomUUID().toString()
+            listViewModel.createList(
+                ListsModel(
+                    listID,
+                    listName,
+                    description,
+                    AppPreff(requireContext()).getUserID().toString(),
+                    System.currentTimeMillis(),
+                    System.currentTimeMillis(),
+                    "",
+                    false,
+                    0,
+                    false
+                )
+            )
+        }
+
+        binding.closeDialogButton.setOnClickListener { dismiss() }
     }
 
     private fun configureInset() {
@@ -101,41 +141,19 @@ class CreateListDialog : DialogFragment() {
         }
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        val imm =
-            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        if (imm.isAcceptingText) {
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-        }
-    }
-
-
-    fun Activity.isKeyboardOpen(): Boolean {
-        fun convertDpToPx(value: Int): Int =
-            (value * Resources.getSystem().displayMetrics.density).toInt()
-
-        val rootView = findViewById<View>(android.R.id.content)
-        val visibleThreshold = Rect()
-        rootView.getWindowVisibleDisplayFrame(visibleThreshold)
-        val heightDiff = rootView.height - visibleThreshold.height()
-
-        val accessibleValue = convertDpToPx(KEYBOARD_VISIBLE_THRESHOLD_DP)
-
-        return heightDiff > accessibleValue
-    }
-
     override fun getTheme(): Int = R.style.AppTheme_NoWiredStrapInNavigationBar
 
-    fun hideProgressBar(){
+    fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
         dialog!!.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
-    fun showprogressBar(){
+
+    fun showprogressBar() {
         binding.progressBar.visibility = View.VISIBLE
-        dialog!!.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        dialog!!.window?.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        );
 
     }
 

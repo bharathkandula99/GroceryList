@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -47,7 +48,8 @@
                 android:focusable="true"
                 android:src="@drawable/ic_more_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/round_text_view"
@@ -120,15 +122,17 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/set_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="Set"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:visibility="visible" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/emailTextField"
+                        android:id="@+id/minimum_quantity_text_field"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,11 +142,12 @@
                         app:boxStrokeColor="#608484">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/minimum_quantity_edit_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
-                            android:text="5"
+                            android:text="0"
                             android:textSize="15sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -179,6 +184,7 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/last_thirty_days"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -204,7 +210,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/consumed_edit_text"
+                        android:id="@+id/consumed_text_field"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -214,6 +220,7 @@
                         app:boxStrokeColor="#608484">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/consumed_edit_text_field"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
@@ -224,6 +231,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/quantity_consumed_unit_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/margin_medium"
@@ -236,6 +244,20 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="@dimen/margin_short"
+                android:visibility="gone">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="true"
+                    android:keepScreenOn="true" />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

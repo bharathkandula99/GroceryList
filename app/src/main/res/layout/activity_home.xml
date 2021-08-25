@@ -18,17 +18,6 @@
             app:defaultNavHost="true"
             android:layout_above="@id/bottomNavigationLayout"
             app:navGraph="@navigation/home_navigation" />
-
-        <!-- <androidx.fragment.app.FragmentContainerView
-             android:id="@+id/authActivityFragmentContainer"
-             android:name="androidx.navigation.fragment.NavHostFragment"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             app:="@id/bottomNavigationLayout"
-             app:defaultNavHost="true"
-             app:layout_constraintBottom_toTopOf="@id/bottomNavigationLayout"
-             app:navGraph="@navigation/home_navigation" />-->
-
         <LinearLayout
             android:id="@+id/bottomNavigationLayout"
             android:layout_width="match_parent"

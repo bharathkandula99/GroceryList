@@ -10,4 +10,7 @@
     <color name="statusBar">#CDDC39</color>
     <color name="groczyText">#608484</color>
     <color name="colorNoAction">#d5d3d5</color>
+    <color name="icon_background">#B4DF39</color>
+    <color name="red">#F44336</color>
+    <color name="disable_foreground">#50FFFFFF</color>
 </resources>

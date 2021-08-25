@@ -24,7 +24,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     private val _email: MutableLiveData<String> = MutableLiveData(AppPreff(application).getUserEmail())
     val email: LiveData<String>
         get() = _email
-    private val _name: MutableLiveData<String> = MutableLiveData(AppPreff(application).getFirstName() + AppPreff(application).getLastName())
+    private val _name: MutableLiveData<String> = MutableLiveData(AppPreff(application).getFirstName() +" "+ AppPreff(application).getLastName())
     val name: LiveData<String>
         get() = _name
 }

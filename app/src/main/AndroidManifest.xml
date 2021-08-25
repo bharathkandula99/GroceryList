@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Groczy">
         <activity android:name=".activities.HomeActivity"
             android:theme="@style/GeneralTheam"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden|stateAlwaysHidden"/>
         <activity
             android:name=".activities.LoginActivity"
             android:theme="@style/GeneralTheam" />

@@ -11,9 +11,11 @@ class AppPreff(context: Context) {
     val LASTNAME = "LastName"
     val USERID = "UserID"
 
-
     fun clearAppPref() {
         preference.edit().remove(EMAIL).apply();
+        preference.edit().remove(FIRSTNAME).apply();
+        preference.edit().remove(LASTNAME).apply();
+        preference.edit().remove(USERID).apply();
     }
 
     fun setUserEmail(email: String) {

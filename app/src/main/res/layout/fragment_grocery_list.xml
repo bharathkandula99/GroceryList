@@ -11,6 +11,9 @@
             name="listViewModel"
             type="com.tilicho.grocery.mangement.viewModel.ListsViewModel" />
 
+        <variable
+            name="shouldVisibleMarkAsPurchaseButton"
+            type="Boolean" />
 
     </data>
 
@@ -18,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,16 +44,16 @@
                 android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                tools:visibility="visible"
+                android:src="@drawable/ic_more_vertical"
                 android:visibility="@{ safeUnbox(listViewModel.shouldShowGroceryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
-                android:src="@drawable/ic_more_vertical" />
+                tools:visibility="visible" />
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -59,17 +61,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toStartOf="@id/menu"
-                android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@id/menu"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                tools:visibility="visible"
+                android:src="@drawable/ic_baseline_share_24"
                 android:visibility="@{ safeUnbox(listViewModel.shouldShowGroceryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
-                android:src="@drawable/ic_baseline_share_24" />
-
-
+                tools:visibility="visible" />
 
             <!--Grocery List Title-->
             <com.google.android.material.textview.MaterialTextView
@@ -80,9 +80,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Grocery List"
+                android:text="@{listViewModel.selectedList.name}"
                 android:textColor="#404e58"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                tools:text="Title" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -100,7 +101,7 @@
                 android:text="Recurring"
                 android:textColor="@color/teal_200"
                 android:textSize="12dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/discription_text_field"
@@ -111,7 +112,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/homepagebaukastenbook"
-                android:text="This is sample discription"
+                android:text="@{listViewModel.selectedList.description}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -196,9 +197,39 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/groczyText"
-                android:contentDescription="Add Categoty"
-                app:srcCompat="@drawable/ic_add_24" />
+                android:visibility="@{ safeUnbox( !listViewModel.shouldShowGroceryListEmptyUI &amp;&amp; shouldVisibleMarkAsPurchaseButton) ? View.GONE : View.VISIBLE, default=gone}"
+                app:srcCompat="@drawable/ic_add_24"
+                tools:visibility="visible" />
 
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/mark_as_purchase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/groczyText"
+                android:padding="5dp"
+                android:text="Mark as a purchase"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="@{ safeUnbox(shouldVisibleMarkAsPurchaseButton) ? View.VISIBLE : View.GONE, default=gone}" />
+
+            <RelativeLayout
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="@dimen/margin_short"
+                android:visibility="gone">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="true"
+                    android:keepScreenOn="true" />
+            </RelativeLayout>
         </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 </layout>

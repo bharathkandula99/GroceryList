@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import androidx.databinding.DataBindingUtil
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.databinding.CategoryItemBinding
+import com.tilicho.grocery.mangement.utils.CategoryModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,25 +16,22 @@ import java.util.*
 
 class CategoryChooseAdapter(
     applicationContext: Context,
-    private val previouslyChosenCategory: String? = null
+    categories: MutableList<CategoryModel>? = null,
+    previouslyChosenCategory: CategoryModel? = null
 ) : BaseAdapter() {
-    private var list = listOf(
-        "Category1",
-        "Category2",
-        "Category3",
-        "Category4",
-        "Category5",
-        "Category6",
-        "Category7"
-    )
+
+    val categoriesList = categories
+    val previouslyChosenCategory = previouslyChosenCategory
     private var filter = ""
-    private var filteredCategoryList: List<String>? = null
+    private var filteredCategoryList: List<CategoryModel>? = null
 
     init {
         val uiScope = CoroutineScope(Dispatchers.Main)
         uiScope.launch {
 
-            filteredCategoryList = list.toList()
+            if (categoriesList != null) {
+                filteredCategoryList = categoriesList
+            }
             notifyDataSetChanged()
         }
     }
@@ -61,24 +59,25 @@ class CategoryChooseAdapter(
         } else {
             DataBindingUtil.inflate(inflater, R.layout.category_item, parent, false)
         }
-
         binding.root.tag = binding
-
-        binding.categoryNameTextView.text = filteredCategoryList!![position]
-
-        binding.isPreviouslyChosen = false
-
+        binding.categoryNameTextView.text = filteredCategoryList!![position].name
+        try {
+            binding.isPreviouslyChosen =
+                previouslyChosenCategory != null && previouslyChosenCategory.id == filteredCategoryList!![position].id
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return binding.root
     }
 
     fun setFilter(filterString: String) {
         filter = filterString.trim().toLowerCase(Locale.ENGLISH)
 
-        if (list == null)
+        if (categoriesList == null)
             return
 
-        filteredCategoryList = list!!.filter { c ->
-            c.lowercase(Locale.ENGLISH).startsWith(filter)
+        filteredCategoryList = categoriesList!!.filter { c ->
+            c.name.lowercase(Locale.ENGLISH).contains(filter)
         }
 
         notifyDataSetChanged()

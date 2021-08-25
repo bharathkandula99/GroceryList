@@ -5,11 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.databinding.ActivityHomeBinding
 
@@ -25,7 +22,8 @@ class HomeActivity : AppCompatActivity() {
             this,
             R.layout.activity_home
         )
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.homeActivityFragmentContainer) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.homeActivityFragmentContainer) as NavHostFragment
         val navController = navHostFragment.navController
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
@@ -51,17 +49,20 @@ class HomeActivity : AppCompatActivity() {
                 R.id.fragment_settings -> {
                     toast("reselected page 4")
                     // Respond to navigation item 2 click
-
                 }
 
             }
         }
-
-        binding.bottomNavigation.selectedItemId = R.id.fragment_list
-
+        // binding.bottomNavigation.selectedItemId = R.id.fragment_list
+        selectFragment(R.id.fragment_list)
 
     }
+
     fun toast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun selectFragment(fragmentList: Int = R.id.fragment_list) {
+        binding.bottomNavigation.selectedItemId = fragmentList
     }
 }

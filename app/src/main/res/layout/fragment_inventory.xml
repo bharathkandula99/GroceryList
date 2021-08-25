@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="foodSummeryViewModel"
-            type="com.tilicho.grocery.mangement.viewModel.FoodSummeryViewModel" />
+            name="listViewModel"
+            type="com.tilicho.grocery.mangement.viewModel.ListsViewModel" />
 
 
     </data>
@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:src="@drawable/ic_no_data"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
             tools:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -49,7 +49,7 @@
             android:layout_marginTop="30dp"
             android:text="Your inventory is empty!"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
             tools:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:text="Create your first list and mark the items are purchased to add them to your inventory"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
             tools:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
@@ -79,7 +79,7 @@
             android:paddingEnd="20dp"
             android:text="Create a List"
             android:textAllCaps="false"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.VISIBLE : View.GONE, default=visible}"
             tools:visibility="gone" />
 
         <androidx.appcompat.widget.SearchView
@@ -97,7 +97,7 @@
             android:fadingEdgeLength="3dp"
             android:requiresFadingEdge="horizontal"
             android:textCursorDrawable="@null"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
             app:iconifiedByDefault="false"
             app:queryBackground="@null"
             app:queryHint="Search for items in kitchen"
@@ -118,7 +118,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="10dp"
             android:paddingBottom="8dp"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
             tools:visibility="visible">
 
             <ImageView
@@ -149,8 +149,7 @@
             android:layout_marginEnd="20dp"
             android:text="Frequently Used Items"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
-            tools:visibility="visible" />
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/frequently_used_recycler_view"
@@ -159,8 +158,7 @@
             android:layout_below="@id/frequently_used_textview"
             android:layout_marginStart="15dp"
             android:layout_marginTop="@dimen/margin_medium"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
-            tools:visibility="visible" />
+            android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/in_stock_textview"
@@ -172,7 +170,7 @@
             android:layout_marginEnd="20dp"
             android:text="In Stock"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+            android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
             tools:visibility="visible" />
 
         <RelativeLayout
@@ -189,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
-                android:visibility="@{ safeUnbox(foodSummeryViewModel.shouldShowFoodSumeryEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
+                android:visibility="@{ safeUnbox(listViewModel.shouldShowInventoryListEmptyUI) ? View.GONE : View.VISIBLE, default=gone}"
                 tools:visibility="visible" />
         </RelativeLayout>
 

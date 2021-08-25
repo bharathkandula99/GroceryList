@@ -10,10 +10,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.tilicho.grocery.mangement.R
 import com.tilicho.grocery.mangement.activities.HomeActivity
-import com.tilicho.grocery.mangement.api.FirebaseAuthManager
 import com.tilicho.grocery.mangement.databinding.FragmentLoginBinding
 import com.tilicho.grocery.mangement.viewModel.AppViewModelStore
 import com.tilicho.grocery.mangement.viewModel.AuthViewModel
@@ -60,7 +58,8 @@ class LoginFragment : Fragment() {
                 hideProgressBar()
                 Toast.makeText(context, "Login sucess.", Toast.LENGTH_SHORT)
                     .show()
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                navigateToHomeActivity()
+                authViewModel._isLoginSucess.value = false
             }
         })
 
@@ -81,6 +80,8 @@ class LoginFragment : Fragment() {
                 hideProgressBar()
                 Toast.makeText(context, "Sign up sucess.", Toast.LENGTH_SHORT)
                     .show()
+                navigateToHomeActivity()
+                authViewModel._isSignUpSucess.value = false
             }
         })
 
@@ -110,7 +111,7 @@ class LoginFragment : Fragment() {
     private fun initListeners() {
         binding.firstNameEditText.addTextChangedListener {
             if (it != null) {
-                firstNameOk = it.length > 2
+                firstNameOk = it.length > 4
                 authViewModel.firstName.value = it.toString()
                 toggleActionButtons()
             }
@@ -125,8 +126,10 @@ class LoginFragment : Fragment() {
         }
 
         binding.emailEditText.addTextChangedListener {
-            if (it != null) {
-                emailOk = it.length > 2
+            if (it != null && it.toString() != null && it.toString().isNotEmpty()) {
+                emailOk =
+                    it.length > 2 && android.util.Patterns.EMAIL_ADDRESS.matcher(it.toString())
+                        .matches()
                 toggleActionButtons()
             }
         }
@@ -169,11 +172,19 @@ class LoginFragment : Fragment() {
             //  triggerForgotPassword("dheeraj@tilicho.in")
         }
     }
+
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
     }
 
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun navigateToHomeActivity() {
+        authViewModel._isSignUpSucess.removeObservers(viewLifecycleOwner)
+        authViewModel._isLoginSucess.removeObservers(viewLifecycleOwner)
+        startActivity(Intent(requireActivity(), HomeActivity::class.java))
+        activity?.finish()
     }
 }

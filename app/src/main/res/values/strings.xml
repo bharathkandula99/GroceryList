@@ -8,15 +8,24 @@
     <string name="visit_our_website">Visit our website</string>
     <string name="create_list">Create a new list</string>
     <string name="create_a_cateogry">Create a cateogry</string>
+    <string name="close_app_confirmation_message">Please confirm that you want to exit from app?</string>
 
-    <string-array name="programming_languages">
+    <string-array name="units">
         <item>kg</item>
         <item>L</item>
         <item>Packet</item>
         <item>Bottle</item>
         <item>Can</item>
-        <item>ml</item>
+        <item>mL</item>
         <item>gms</item>
-        <item>lb</item>
+        <item>lbs</item>
+    </string-array>
+
+    <string-array name="type_of_meal">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Snacks</item>
+        <item>Dinner</item>
+        <item>Other</item>
     </string-array>
 </resources>

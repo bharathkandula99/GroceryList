@@ -15,20 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="21dp"
-        android:paddingBottom="5dp"
-        android:paddingEnd="21dp">
+        android:paddingEnd="21dp"
+        android:paddingBottom="5dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"
             style="@style/Widget.MaterialComponents.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:clickable="true"
+            android:elevation="13dp"
+            android:background="@color/white"
             android:focusable="true"
-            android:elevation="3dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="0dp"
-            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -46,8 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grocery List"
+                    android:textColor="#453554"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,8 +58,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/homepagebaukastenbook"
-                    android:textColor="@android:color/darker_gray"
                     android:text="Pending Items : 20 / 20"
+                    android:textColor="#A6A6A6"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/list_title" />
@@ -69,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/homepagebaukastenbook"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="#A6A6A6"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pending_items"
