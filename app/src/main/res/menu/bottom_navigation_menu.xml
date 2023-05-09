@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_list"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="Lists"/>
+    <item
+        android:id="@+id/fragment_inventory"
+        android:enabled="true"
+        android:icon="@drawable/ic_inventory_2_24"
+        android:title="Inventory"/>
+    <item
+        android:id="@+id/fragment_summery"
+        android:enabled="true"
+        android:icon="@drawable/ic_summarize_24"
+        android:title="Summery"/>
+    <item
+        android:id="@+id/fragment_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings"/>
+</menu>
+

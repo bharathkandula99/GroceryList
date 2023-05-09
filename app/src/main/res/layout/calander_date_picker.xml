@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.modals.CalendarDatePickerDialog">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@android:color/white">
+
+        <DatePicker
+            android:id="@+id/calendarDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:datePickerMode="calendar"
+            android:theme="@style/datePicker" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_short"
+                android:background="?attr/selectableItemBackground"
+                android:padding="18dp"
+                android:textColor="@color/groczyText"
+                android:text="Cancel" />
+
+            <Button
+                android:id="@+id/chooseDateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_short"
+                android:background="?attr/selectableItemBackground"
+                android:padding="18dp"
+                android:textColor="@color/groczyText"
+                android:text="Choose" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

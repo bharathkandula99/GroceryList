@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="listViewModel"
+            type="com.tilicho.grocery.mangement.viewModel.ListsViewModel" />
+
+        <variable
+            name="shouldShowEmptyUI"
+            type="Boolean" />
+
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#dce4eb">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/my_lists_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{ safeUnbox(!shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=visible}" />
+
+                <TextView
+                    android:id="@+id/empty_my_lists_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="154dp"
+                    android:fontFamily="@font/homepagebaukastenbook"
+                    android:gravity="center"
+                    android:text="Currently, you don't have any lists"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="350dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90dp"
+                    android:fitsSystemWindows="true"
+                    android:src="@drawable/ic_undraw_empty_xct9__1_"
+                    android:visibility="@{ safeUnbox(shouldShowEmptyUI) ? View.VISIBLE : View.GONE, default=gone}" />
+
+                <ProgressBar
+                    android:id="@+id/my_lists_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

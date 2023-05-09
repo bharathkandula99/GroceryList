@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="settingsViewModel"
+            type="com.tilicho.grocery.mangement.viewModel.SettingsViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dce4eb">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/settings_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Settings"
+            android:textColor="#404e58"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Base.TextAppearance.AppCompat.Large-->
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/app_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:text="App"
+            android:textColor="#404e58"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_title" />
+
+        <!--Account layout-->
+        <RelativeLayout
+            android:id="@+id/account_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/app_sub_title">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Settings" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black" />
+
+
+        </RelativeLayout>
+
+        <!--launch layout-->
+        <RelativeLayout
+            android:id="@+id/launch_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/account_layout">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Launch Screen" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/forward_arrow"
+                android:textColor="#404e58"
+                tools:text="Home" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/forward_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black" />
+
+
+        </RelativeLayout>
+
+        <!--Appearence layout-->
+        <RelativeLayout
+            android:id="@+id/appearence_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:visibility="gone"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/launch_layout">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appearence" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/appearence_forward_arrow"
+                android:textColor="#404e58"
+                tools:text="Light" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/appearence_forward_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black" />
+
+
+        </RelativeLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/notifications_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Notifications"
+            android:textColor="#404e58"
+            android:textSize="22sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appearence_layout" />
+
+        <!--Reminder layout-->
+        <RelativeLayout
+            android:id="@+id/Reminder_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:paddingStart="15dp"
+            android:paddingEnd="10dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/notifications_sub_title">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reminder" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <!--Auto generate list layout-->
+        <RelativeLayout
+            android:id="@+id/auto_generate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/Reminder_layout1">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto generate list on" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textColor="#404e58"
+                tools:text="Date Picker" />
+
+
+        </RelativeLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/about_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="About"
+            android:textColor="#404e58"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auto_generate_layout" />
+
+        <!--Team layout-->
+        <RelativeLayout
+            android:id="@+id/team_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/about_sub_title">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black" />
+        </RelativeLayout>
+
+        <!--T&C layout-->
+        <RelativeLayout
+            android:id="@+id/t_and_c_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/team_layout">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TC , privacy policy" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black" />
+        </RelativeLayout>
+
+        <!--Share with friends layout-->
+        <RelativeLayout
+            android:id="@+id/share_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/t_and_c_layout">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/SettingsoptionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share with friends" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_right_24"
+                android:tint="@color/black"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <!-- Logout layout-->
+        <RelativeLayout
+            android:id="@+id/logout_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="15dp"
+            android:paddingTop="28dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="28dp"
+            app:layout_constraintTop_toBottomOf="@id/share_layout">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/create_button_background"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Logout"
+                android:textAllCaps="false" />
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

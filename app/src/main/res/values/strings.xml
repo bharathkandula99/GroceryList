@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Groczy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_us_url">https://tilicho.in</string>
+    <string name="about_us">About us</string>
+    <string name="about_us_text">Tilicho Labs is a boutique technology consultancy that specializes in mobile technologies.\n\nWe are based out of Vizag, a beautiful coastal city in India and love building apps.\n\nWe build beautiful applications that power businesses and delight users.</string>
+    <string name="visit_our_website">Visit our website</string>
+    <string name="create_list">Create a new list</string>
+    <string name="create_a_cateogry">Create a cateogry</string>
+    <string name="close_app_confirmation_message">Please confirm that you want to exit from app?</string>
+
+    <string-array name="units">
+        <item>kg</item>
+        <item>L</item>
+        <item>Packet</item>
+        <item>Bottle</item>
+        <item>Can</item>
+        <item>mL</item>
+        <item>gms</item>
+        <item>lbs</item>
+    </string-array>
+
+    <string-array name="type_of_meal">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Snacks</item>
+        <item>Dinner</item>
+        <item>Other</item>
+    </string-array>
+</resources>
