@@ -31,3 +31,12 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+
+
+.gradle
+.DS_Store
+build
+.idea
+com_crashlytics_export_strings.xml
+java_pid5513.hprof
