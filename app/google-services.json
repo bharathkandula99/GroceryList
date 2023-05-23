@@ -1,41 +1,42 @@
 {
   "project_info": {
-    "project_number": "827783049642",
-    "project_id": "groczy-dev",
-    "storage_bucket": "groczy-dev.appspot.com"
+    "project_number": "1093881796692",
+    "project_id": "groczy-81005",
+    "storage_bucket": "groczy-81005.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:827783049642:android:85fe1acf80ada8102cbbd3",
+        "mobilesdk_app_id": "1:1093881796692:android:e18675e1d1dc0b8ef735c1",
         "android_client_info": {
-          "package_name": "com.tilicho.grocery.mangement.debug"
+          "package_name": "com.tilicho.grocery.mangement"
         }
       },
       "oauth_client": [
         {
-          "client_id": "827783049642-lpvu4haa52b02ivm7jsvtvouaogkrh4a.apps.googleusercontent.com",
+          "client_id": "1093881796692-vrrrq1gfnti48tj0vu4a90t0lvui6odr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tilicho.grocery.mangement",
+            "certificate_hash": "acf685a43b538c0de4c0801835c2869987d0b636"
+          }
+        },
+        {
+          "client_id": "1093881796692-dkgvh4m0akeqo709893qe0frrmqq1rq4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA517JjajZNQ9BNXeMdpE_86Z7A0BwGCYs"
+          "current_key": "AIzaSyDT6VVQ1n9iU2uX0PICThrqBzrDFd8h4Ws"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "827783049642-lpvu4haa52b02ivm7jsvtvouaogkrh4a.apps.googleusercontent.com",
+              "client_id": "1093881796692-dkgvh4m0akeqo709893qe0frrmqq1rq4.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "827783049642-1qgp7hq5s4bope3u5d4v4e0dhgvla1im.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.tilicho.grocery.mangement"
-              }
             }
           ]
         }
